@@ -1,0 +1,16 @@
+---
+
+id_debug: true
+listen:
+  type: tcp
+  bind_ip: 0.0.0.0
+  port: 10000
+mongodb:
+  host: localhost
+  port: 27017
+  database: mongo_example
+  auth_db:
+  username:
+  password:
+  collection: users
+
