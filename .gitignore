@@ -26,3 +26,4 @@ go.work.sum
 
 /logs
 /build
+/.idea
