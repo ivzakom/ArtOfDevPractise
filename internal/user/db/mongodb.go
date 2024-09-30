@@ -1,13 +1,14 @@
 package db
 
 import (
+	"artOfDevPractise/internal/apperror"
+	"artOfDevPractise/internal/user"
+	"artOfDevPractise/pkg/logging"
 	"context"
 	"errors"
 	"fmt"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
-	"golang_lessons/internal/user"
-	"golang_lessons/pkg/logging"
 )
 
 type db struct {
@@ -41,8 +42,8 @@ func (d db) FindOne(ctx context.Context, id string) (u user.User, err error) {
 	result := d.collection.FindOne(ctx, filter)
 	if result.Err() != nil {
 		if errors.Is(result.Err(), mongo.ErrNoDocuments) {
-			//TODO ErrorEntityNotFound
-			return u, fmt.Errorf("user not found")
+
+			return u, apperror.ErrorNotFound
 		}
 		return u, fmt.Errorf("failed to find user by id: %s, error: %v", id, result.Err())
 	}
@@ -80,8 +81,7 @@ func (d db) Update(ctx context.Context, user user.User) error {
 	}
 
 	if result.MatchedCount == 0 {
-		//TODO error antity not found
-		return fmt.Errorf("failed to find user by id: %s", objectID)
+		return apperror.ErrorNotFound
 	}
 
 	d.logger.Tracef("Matched: %d, documents and Modifide: %d", result.MatchedCount, result.ModifiedCount)
@@ -101,8 +101,7 @@ func (d db) Delete(ctx context.Context, id string) error {
 		return fmt.Errorf("failed to delete user by id: %s, error: %v", objectID, err)
 	}
 	if result.DeletedCount == 0 {
-		//TODO error antity not found
-		return fmt.Errorf("failed to delete user by id: %s", objectID)
+		return apperror.ErrorNotFound
 	}
 	d.logger.Tracef("Deleted: %d documents", result.DeletedCount)
 	return nil

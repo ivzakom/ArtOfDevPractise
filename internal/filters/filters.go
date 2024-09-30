@@ -1,9 +1,9 @@
 package filters
 
 import (
+	"artOfDevPractise/internal/item"
 	"errors"
 	"fmt"
-	"golang_lessons/internal/item"
 )
 
 type FiltersErr struct {

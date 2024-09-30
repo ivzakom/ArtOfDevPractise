@@ -1,8 +1,8 @@
 package user
 
 import (
+	"artOfDevPractise/pkg/logging"
 	"context"
-	"golang_lessons/pkg/logging"
 )
 
 type Service struct {

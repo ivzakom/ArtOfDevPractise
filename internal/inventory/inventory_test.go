@@ -1,9 +1,9 @@
 package inventory
 
 import (
+	fl "artOfDevPractise/internal/filters"
+	. "artOfDevPractise/internal/item"
 	. "github.com/smartystreets/goconvey/convey"
-	fl "golang_lessons/internal/filters"
-	. "golang_lessons/internal/item"
 	"testing"
 )
 
