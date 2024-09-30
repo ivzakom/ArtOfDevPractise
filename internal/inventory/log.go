@@ -1,8 +1,8 @@
 package inventory
 
 import (
+	"artOfDevPractise/internal/item"
 	"fmt"
-	"golang_lessons/internal/item"
 )
 
 func (inv *Inventory) logOperation(logID int, item item.Item, quantity int, isAdd bool, err error) {

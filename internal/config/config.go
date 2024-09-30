@@ -1,8 +1,8 @@
 package config
 
 import (
+	"artOfDevPractise/pkg/logging"
 	"github.com/ilyakaznacheev/cleanenv"
-	"golang_lessons/pkg/logging"
 	"sync"
 )
 

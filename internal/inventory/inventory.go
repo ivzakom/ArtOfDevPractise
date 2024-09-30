@@ -1,12 +1,12 @@
 package inventory
 
 import (
+	flt "artOfDevPractise/internal/filters"
+	itm "artOfDevPractise/internal/item"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
-	flt "golang_lessons/internal/filters"
-	itm "golang_lessons/internal/item"
 	"os"
 	"sort"
 	"sync"

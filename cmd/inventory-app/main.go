@@ -1,15 +1,15 @@
 package main
 
 import (
+	"artOfDevPractise/internal/config"
+	"artOfDevPractise/internal/inventory"
+	"artOfDevPractise/internal/user"
+	"artOfDevPractise/internal/user/db"
+	"artOfDevPractise/pkg/client/mongoDB"
+	"artOfDevPractise/pkg/logging"
 	"context"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
-	"golang_lessons/internal/config"
-	"golang_lessons/internal/inventory"
-	"golang_lessons/internal/user"
-	"golang_lessons/internal/user/db"
-	"golang_lessons/pkg/client/mongoDB"
-	"golang_lessons/pkg/logging"
 	"net"
 	"net/http"
 	"os"
@@ -69,8 +69,11 @@ func main() {
 
 	router := httprouter.New()
 
-	handler := inventory.NewHandler(inv, logger)
-	handler.Register(router)
+	handlerInv := inventory.NewHandler(inv, logger)
+	handlerInv.Register(router)
+
+	handlerUser := user.NewHandler(logger)
+	handlerUser.Register(router)
 
 	start(router, cfg)
 
